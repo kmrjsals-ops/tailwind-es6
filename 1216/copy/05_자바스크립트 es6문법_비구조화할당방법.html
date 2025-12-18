@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05_자바스크립트 es6문법_비구조화 할당 방법</title>
+</head>
+<body>
+  <h2>05_자바스크립트 es6문법_비구조화 할당 방법</h2>
+  <p>비구조화 할당 이란? 배열(array)이나 객체(object)의 '속성' 혹은 '값'을 해체하여 그 값을 변수에 각각 담아 사용하는 자바스크립트 표현식입니다.</p>
+  <p>배열(array)이란? : 연관된 데이터(과일목록, 책목록, 의류, 요일, 월....)</p>
+
+  <script>
+    //배열객체
+    //let fruit = '과일';
+    let fruit = ['사과','딸기','바나나','귤','수박','포도'];
+    let yoil = ['일','월','화','수','목','금','토'];
+
+    //배열객체 출력
+    documenet.write(fruit);//전부출력
+    documenet.write(fruit[0]);//n번째 출력(인덱스 번호)   
+  </script>
+
+  <h3>비구조화 할당 방식으로 데이터 출력하기</h3>
+  <pre>
+    #비구조화 할당 방식 배열 선언 및 호출문법
+    const [변수명1, 변수명2, 변수명3] = [값1, 값2, 값3];
+  </pre>
+  <hr>
+  <script>
+    //1. 구조할당 방식
+    const animalList = ['강아지','고양이','토끼','닭','사슴','비둘기','오리','염소'];
+    document.write(animalList+'<br>');
+    document.write(animalList[0]+'<br>');
+    document.write(animalList[2]+'<br>');
+    document.write(animalList[4]+'<br>');
+    document.write(animalList[5]+'<br>');
+
+    document.write('<hr>');
+
+    //2. 비구조화 할당 방식
+    const [ani1, ani2, ani3, ani4, ani5, ani6, ani7, ani8] = ['강아지','고양이','토끼','닭','사슴','비둘기','오리','염소'];
+
+    //데이터출력하기
+    document.write(ani1+'<br>');
+    document.write(ani8+'<br>');
+
+    //3. 배열 구조분해 할당 - 기존 배열의 값을 새로운 배열 목록에 대입하여 배열 목록만듬
+    let users = ['홍길동','이순신','강감찬']; //기존 회원 목록
+    let [user1, user2, user3] = users; //새로운 배열
+
+    //출력하기
+    document.write('<h2>');
+    document.write(user1+'<br>');
+    document.write(user2+'<br>');
+    document.write(user3+'<br>');
+
+    //4. 객체 구조 분해
+    let user = {
+      name:'홍길동',
+      age:'30',
+      address:'서울'
+    }
+
+    document.write('<hr>');
+
+    let {name, age, address} = user;
+
+    document.write(name+'<br>');
+    document.write(age+'<br>');
+    document.write(address+'<br>');
+
+  </script>
+</body>
+</html>

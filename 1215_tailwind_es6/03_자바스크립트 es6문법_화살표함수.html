@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>자바스크립트 es6문법_화살표함수</title>
+</head>
+<body>
+	<h2>자바스크립트 es6문법_화살표함수</h2>
+	<p>함수란? 일련의 내용을 작성하여 사용자가 필요할 때 호출하여 내용을 실행하는 실행문이다.</p>
+	<p>함수는 매개변수가 있는 함수와 매개변수가 없는 일반 함수가 있다.</p>
+	<p>select, option 태그 사용시 this는 window객체를 가리키기 때문에 화살표 함수를 사용하지 않는 것이 좋다. 화살표 함수로 하려면 e.target.value를 사용</p>
+	<h3>1. 기존 함수 작성과 실행</h3>
+	<pre>
+		//1번 방식 - 매개변수 있는 함수
+		function 함수명(매개변수1, 매개변수2....){
+			실행할 내용;
+		}
+
+		//2번 방식 - 매개변수 없는 함수
+		function 함수명(){
+			실행할 내용;
+		}
+
+		//3번 방식
+		const 변수명 = function(){
+			실행할 내용;
+		}
+
+		//함수 실행은 함수명을 호출하여 실행한다.
+		함수명();
+	</pre>
+	<h3>es6문법에서 새롭게 추가된 화살표 함수 작성과 실행방법</h3>
+	<pre>
+		const 변수명 = ()=> {
+			실행할 내용;
+		}
+	</pre>
+	<script>
+		const hello =()=>{
+			let a = 10;
+			let b = 100;
+			document.write(`문자열 결합연산자를 활용하여 내용 출력하기`);
+			document.write(a+b+`<br>`);
+			document.write(`백틱문자를 활용하여 내용 출력하기 : ${a+b}`);
+			document.write(`<br><span>화살표 함수를 활용하여 내용 출력하기</span>`);
+		}
+		hello();
+	</script>
+	<h3>매개변수가 한개인 유형</h3>
+	<pre>
+		함수명 = 매개변수 => {표현식};
+		함수명 = (매개변수) => {표현식};
+	</pre>
+	<p>매개변수가 한개일 경우는 굳이 담지 않아도 된다. 괄호()를 안써도 상관없다.</p>
+	<script>
+		square = x =>{
+			return x*x; //3x3=9
+		}
+		console.log(square(3)); //9
+
+		square2 = (x,y) =>{
+			return x*y;//3x1=3
+		}
+		console.log(square2(3,1));
+	</script>
+	<h3>화살표 함수와 this 키워드</h3>
+	<ul>
+		<li>this(이것) - 해당 키워드가 속한 객체를 참조하고자 할 때</li>
+		<li>혼자 써있다면 전역 객체를 의미</li>
+		<li>함수에서는 전역 객체를 의미</li>
+		<li>메서드 내부에서는 메서드를 소유한 객체를 의미</li>
+		<li>이벤트는 이벤트를 받는 객체 의미</li>
+	</ul>
+	<script>
+		let x = this;
+		console.log(x);
+
+		const myFunction = () =>{
+			return this; //전역에서 this 키워드를 사용하여 출력하기
+		}
+		console.log(myFunction);
+
+		const person ={
+			firstName:'홍',
+			lastName:'길동',
+			id:1234,
+			fullName:function(){
+				return this.firstName+''+this.lastName;
+			}
+		}
+
+		document.write(person);
+		document.write(person.firstName);
+		document.write(person.lastName);
+	</script>
+</body>
+</html>

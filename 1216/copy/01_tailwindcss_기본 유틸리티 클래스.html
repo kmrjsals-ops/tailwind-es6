@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01_tailwindcss_기본 유틸리티 클래스</title>
+  <!-- tailwindcss CDN주소 -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="p-2">
+  <h2 class="font-bold text-xl font-bold text-blue-600/100">01_tailwindcss_기본 유틸리티 클래스</h2>
+  <p>Utility-first CSS라는 이름이 생소할 수 있지만, 이미 많이 사용된 라이브러리 중에는 'Bootstrap'이 이 개념을 기반으로 제작되었습니다.</p>
+  <p>Utility-first CSS는 각 class가 담당할 스타일을 미리 정의하고 필요한 class들을 조합해서 적용하는 식으로 사용합니다.</p>
+  <pre>
+    //class(클래스명) 이름은 다음과 같은 형태로 짓습니다.
+    .{property}{side}-{size}
+  </pre>
+
+  <h3 class="font-bold text-lg py-5 text-red-600">1. margin과 padding값 적용하기</h3>
+  <ul class="pl-10 list-disc">
+    <li>margin의 약자인 'm', 방향을 가리키는 top : t, bottom : b, left : l, right : r을 사용. mt-5 : margin-top:5px값을 정의된 속성에 따라 적용한다.</li>
+    <li>padding : margin과 동일한 사용법을 따라 작성함. pb-3 : padding-bottom 3px값을 정의된 속성에 따라 적용한다.</li>
+    <li>px-2 : x축 기준으로 padding값(padding-left, padding-right)을 2px을 정의된 속성에 따라 적용한다.</li>
+    <li>py-5 : y축 기준으로 padding값(padding-top, padding-bottom)을 5px로 정의된 속성에 따라 적용한다.</li>
+  </ul>
+
+  <h3 class="font-bold text-lg py-5 text-red-600">2. Typography(font, text, leading - 글자관련 속성)</h3>
+  <ul class="pl-10 list-disc">
+    <li class="font-[바탕체]">글자모양 : font-family - font-sans, font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; </li>
+    <li class="text-center">정렬방법 : text-left(text-align:left), text-justify(text-align:justify), text-start(text-align:start)</li>
+    <li class="text-green-500/100">글자색상 : text-black(color: rgb(0 0 0 / var(--tw-text-opacity, 1));)</li>
+    <li>글자속성 : font-weight : font-thin, font-extralight, font-light, font-medium, font-semibold, font-bold, font-extrabold, font-black</li>
+    <li>세로정렬 : align-top, align-bottom, align-sub, align-super</li>
+    <li>줄바꿈 :  whitespace-nowrap, break-normal</li>
+  </ul>
+
+  <h3 class="font-bold text-lg py-5 text-red-600">3. 글자크기 관련 서식</h3>
+  <ul class="pl-10 list-disc"> 
+    <li>text-xs : 12px = 0.75rem</li>
+    <li>text-sm : 14px = 0.87rem</li>
+    <li>text-base : 16px = 1rem = 1em = 100%</li>
+    <li>text-lg : 18px = 1.125rem</li>
+    <li>text-xl : 20px = 1.25rem</li>
+    <li>text-2xl : 24px = 1.5rem</li>
+    <li>text-3xl : 30px = 1.875rem</li>
+  </ul>
+  
+  <h3 class="font-bold text-lg py-5 text-red-600">4. 색상(글자, 배경, 테두리 관련 서식)</h3>
+  <ul class="pl-10 list-disc">
+    <li>글자색상 : text-sky-500/100</li>
+    <li>배경색상 : bg-slate-200</li>
+          <!-- border:1px solid #f00 -->
+    <li class="border-2 border-dotted border-blue-500">테두리 두께, 선모양, 선색상 : border-2, border-x-2, border-y-2, border-s-2, border-t-2, border-dotted, border-red-500</li>
+  </ul>
+
+  <h3 class="font-bold text-lg py-5 text-red-600">5. 간격(spacing) - margin, padding, space between</h3>
+  <ul class="pl-10 list-disc">
+    <li>margin : m-0, mx-0, my-0, ms-0, me-0, mt-0, mb-0, ml-0, mr-0, m-px</li>
+    <li>padding : p-0, px-0, py-0, ps-0, pe-0, pt-0, pb-0, pl-0, pr-0, p-px</li>
+    <li>space-x-0 : 가로방향 자식요소들 사이 공간을 추가(가로 메뉴목록)</li>
+    <li>space-Y-0 : 세로방향 자식요소들 사이 공간을 추가(세로 메뉴목록)</li>
+  </ul>
+
+  <h3 class="font-bold py-5 text-red-600">6. 크기관련(width, height, max, min) 서식</h3>
+  <ul class="pl-10 list-disc">
+    <li>가로너비 : w-0, w-px(width:1px), w-4(width:1rem, 16px)</li>
+    <li>세로높이 : h-0, h-px(height:1px), h-4(height:1rem, 16px)</li>
+    <li>최대 가로너비 : max-w-0, max-w-px(max-width:1px), max-w-4(max-width:1rem, 16px)</li>
+    <li>최소 가로너비 : min-w-0, min-w-px(min-width:1px), min-w-4(min-width:1rem, 16px)</li>
+    <li>최대 세로높이 : max-h-0, max-h-px(max-height:1px), max-h-4(max-height:1rem, 16px)</li>
+    <li>최소 세로높이 : min-h-0, min-h-px(min-height:1px), min-h-4(min-height:1rem, 16px)</li>
+  </ul>
+</body>
+</html>

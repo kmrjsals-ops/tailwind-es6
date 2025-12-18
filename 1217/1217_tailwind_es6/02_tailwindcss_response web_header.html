@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02_tailwind css를 활용한 반응형웹 상단 구현</title>
+  <!-- tailwind css 라이브러리 주소 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+  <!-- 내비게이션 영역 -->
+  <nav class="bg-gray-800">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div class="relative flex h-16 items-center justify-center">
+
+        <!-- 모바일 메뉴 버튼 영역 -->
+        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+
+          <!-- menu button -->
+          <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:fing-inset" aria-controls='mobile-menu' aria-expanded="false" id="toggle">
+            <span class="absolute -inset-0.5"></span>
+            <span class="sr-only">Open main menu</span>
+
+            <!-- 토글 누르기 전 아이콘 (햄버거) -->
+            <svg class="block size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" id="menu_btn">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+
+            <!-- 닫기 버튼 아이콘(X) -->
+            <svg class="hidden size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" id="close_btn">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+
+          </button>
+        </div>
+
+        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+          <!-- 로고영역 -->
+          <div class="flex shrink-0 items-center">
+            <img class="h-8 w-auto" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+          </div>
+
+          <!-- 해상도 pc영역일 경우 나오는 메뉴 영역 -->
+          <div class="hidden sm:ml-6 sm:block">
+            <div class="flex space-x-4">
+              <a href="#" title="메뉴1" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">메뉴1</a>
+              <a href="#" title="메뉴2" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">메뉴2</a>
+              <a href="#" title="메뉴3" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">메뉴3</a>
+              <a href="#" title="메뉴4" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">메뉴4</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 오른쪽 콘텐츠 영역 -->
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+
+          <!-- 알림 아이콘(종모양) -->
+          <button class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
+            <span class="absolute -inset-1.5"></span>
+            <span class="sr-only">View notifications</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+            </svg>
+          </button>
+
+          <!-- 프로필 아이콘(유저) -->
+          <div class="relative ml-3">
+            <button class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden" id="user-menu-button">
+              <span class="absolute -inset-1.5"></span>
+              <span class="sr-only">Open user menu</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 모바일 해상도일 경우 toggle버튼 클릭시 메뉴영역 -->
+    <div class="hidden" id="mobile-menu">
+      <div class="space-y-1 px-2 pt-2 pb-3">
+        <a href="#" title="" class="block rounded-md bg-gray-900 px-3 py-3 text-base font-medium text-white" aria-current="page">메뉴1</a>
+        <a href="#" title="" class="block rounded-md text-gray-300 px-3 py-3 text-base font-medium text-white hover:bg-gray-700 hover:text-white">메뉴2</a>
+        <a href="#" title="" class="block rounded-md text-gray-300 px-3 py-3 text-base font-medium text-white hover:bg-gray-700 hover:text-white">메뉴3</a>
+        <a href="#" title="" class="block rounded-md text-gray-300 px-3 py-3 text-base font-medium text-white hover:bg-gray-700 hover:text-white">메뉴4</a>
+        <a href="#" title="" class="block rounded-md text-gray-300 px-3 py-3 text-base font-medium text-white hover:bg-gray-700 hover:text-white">메뉴5</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 자바스크립트로 모바일 해상도일 경우 햄버거 아이콘 클릭시 mobile-menu가 보이게 한다. -->
+  <script>
+    //1. 변수 선언
+    const toggle = document.getElementById('toggle'); //토글버튼 변수
+    const mobile_menu = document.getElementById('mobile-menu');//모바일 해상도일때 나오는 메뉴
+
+    const mnu_btn = document.getElementById('menu_btn'); //svg아이콘 메뉴 아이콘
+    const close_btn = document.getElementById('close_btn'); //svg아이콘 닫기 아이콘
+
+    //2. 버튼 클릭시 메뉴 보이게하기
+    toggle.addEventListener('click', ()=>{
+      //메뉴 보이게하기 / 숨기기
+      mobile_menu.classList.toggle('hidden');
+
+      //햄버거 모양 아이콘이 닫기 아이콘으로 변경되어야
+      mnu_btn.classList.toggle('hidden');
+
+      //닫기 모양 아이콘이 햄버거 아이콘으로 변경되어야
+      close_btn.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

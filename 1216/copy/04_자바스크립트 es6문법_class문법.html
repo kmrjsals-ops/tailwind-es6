@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04_자바스크립트 es6문법_class문법</title>
+</head>
+<body>
+  <h2>04_자바스크립트 es6문법_class문법</h2>
+  <p>class문법이란? 자바언어에서는 클래스 객체를 만들기 위한 설계도를 말한다.</p>
+  <p>객체(object)를 생성하기 위한 필드와 메서드(method)가 정의되어 있다.</p>
+  <p>클래스(class)는 일종의 함수(function)이지만, function 키워드 대신 class키워드를 사용한다.</p>
+  <p>속성은 constructor() 메서드 내부에 할당한다.</p>
+  <p>class는 사실상 함수(function)이기 때문에 함수선언과 변수선언식 둘다 선언이 가능하다.</p>
+  <pre>
+    문법)
+    class 클래스명(){
+      constructor(){
+        this.속성명 = 값;
+      }
+      메서드명(){
+
+      }
+    }
+    --------------------------------------------------
+    javascript 함수문법
+    function 함수명(매개변수1, 매개변수2...){
+      실행할 내용;
+    }
+    function 변수명 => (매개변수1, 매개변수2...){
+      실행할 내용;
+    }
+
+    ------------------------------------------------------
+    문법) 클래스 호출(실행) 방법
+    const 인스턴스명 = new 클래스명();
+  </pre>
+  <p>class문법에서는 클래스명 작성시 무조건 '첫글자는 대문자'로 작성한다.</p>
+
+  <h3>부모 클래스를 상속 받는 자손클래스</h3>
+  <p>상속 : 부모 클래스의 멤버를 자식 클래스에게 물려주는것</p>
+  <p>부모 클래스 : 상위클래스, 슈퍼(super)클래스라고 함</p>
+  <p>자손 클래스 : 하위클래스, 파생클래스라고 함.</p>
+  <p>부모와 자손을 나눠서 관리하는 이유는 '재사용'해서 새로운 클래스(class)를 만들기 때문에 '중복되는 코드를 보여주고 유지보수의 시간을 단축'하기 위함이다.</p>
+  <pre>
+    자손클래스 문법
+    class 자손클래스명 extends 부모클래스명 { }
+  </pre>
+  <pre>
+        include('../common/header.php');
+
+        <main>
+          <?php 
+            include('../main/banner.php');
+          ?>
+        </main>
+
+        include('../common/footer.php');
+    </pre>
+
+    <script>
+      //1. class생성하기
+      class Car{
+        constructor(name){
+          this.brand=name;
+        }
+        present(){
+          return '나는' + this.brand + '를 구매하였다';
+        }
+      }
+
+      //2. 자손클래스
+      class Model extends Car{
+        constructor(name, mod){
+          super(name); 
+          this.model = mod;
+        }
+        show(){
+          return this.present() + '내가 구매한 자동차 모델은 ' + this.model + '입니다.<br>';
+        }
+      }
+
+      //3. class명을 호출하여 내용 출력하기
+      const mycar = new Car('현대자동차');
+      document.write(mycar.brand+'<br>'); //현대자동차
+
+      //4. 새로운 인스턴스로 객체를 생성하여 호출해서 내용을 출력할 수 있다.
+      const mycar01 = new Model('기아자동차', 'k5');
+      document.write(mycar01.show());
+      document.write('<br>');
+
+      //5. 새로운 인스턴스로 객체를 생성하여 내용 출력하기
+      const mycar02 = new Model('광주모터스','casper');
+      document.write(mycar02.show());
+    </script>
+
+    <p>실습) 아이디, 이름을 입력하기 위한 input태그를 작성하고, 다음과 같이 내용을 출력하세요. '내가 입력한 아이디는 '000'이고, 이름은 '000'입니다.</p>
+    <form name="" method="" action="">
+        <p>
+          <label for="id_txt">아이디 : </label>
+          <input type="text" id="id_txt" placeholder="id를 입력하세요.">
+        </p>
+
+        <p>
+          <label for="name_txt">이름 : </label>
+          <input type="text" id="name_txt" placeholder="이름을 입력하세요">
+        </p>
+
+        <button id="result_btn">내용 출력하기</button>
+      </form>
+
+      <p id="result"></p>
+
+      <script>
+        //1. 버튼 변수생성
+        const btn = document.getElementById('result_btn');
+        
+        //페이지 로딩 > 폼양식 데이터 입력 > 출력하기 버튼 클릭 > 이벤트 발생 > 입력값 변수저장 > 객체를 생성하여 데이터 전달 > 부모클래스 실행(자손클래스 포함) > 결과값 출력
+        
+        //1. class생성하기
+        class Login{
+          constructor(id, name){
+            this.id=id;
+            this.name=name;
+          }
+          present(){
+            return `내가 입력한 아이디는 ${this.id}이고, 이름은 ${this.name}입니다.`;
+          }
+        }
+
+        //2. 자손클래스
+        class Data extends Login{
+          constructor(id, name){
+            super(id, name);
+          }
+          //결과 화면에 출력
+          show(){
+            document.getElementById('result').innerText=this.present(); 
+          }
+        }
+
+        //3. 버튼 클릭이벤트
+        btn.addEventListener('click', (e)=>{
+          e.preventDefault(); //submit때문에 새로고침 방지
+
+          const id = document.getElementById('id_txt').value; //id값 저장
+          const name = document.getElementById('name_txt').value; //name값 저장
+
+          const user = new Data(id, name); //객체 생성하여 데이터 넘김
+          user.show(); //객체에 자손 메서드명으로 호출하여 실행 = 부모메서드 실행
+
+        });
+      </script>
+
+</body>
+</html>

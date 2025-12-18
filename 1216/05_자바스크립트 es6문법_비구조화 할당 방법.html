@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>비구조화 할당 방법</title>
+</head>
+<body>
+	<h2>비구조화 할당 방법</h2>
+	<p>비구조화 할당이란? 배열(Array)이나 객체(object)의 '속성' 혹은 '값'을 해체하여 그 값을 변수에 각각 담아 사용하는 자바스크립트 표현식입니다.</p>
+	<p>배열(Array)이란? : 연관된 데이터(과일목록, 책목록, 의류, 요일, 월...)</p>
+
+	<script>
+		//배열객체
+		//let fruit =[asdasdasdas]
+		
+
+		//비구조화 할당 방식
+		const [ani1, ani2, ani3, ani4, ani5, ani6, ani7, ani8] = ['강아지','고양이','토끼','닭','사슴','비둘기','오리','염소'];
+
+		//데이터출력하기
+		document.write(ani1+'<br>');
+		document.write(ani8+'<br>');
+
+		//배열 구조분해 할당
+		let users = ['홍길동','이순신','강감찬'];
+		let [user1, user2, user3] = users;
+
+		document.write('<hr>');
+		document.write(user1+'<br>')
+		document.write(user2+'<br>')
+		document.write(user3+'<br>')
+
+		//배열 객체 구조 분해
+		let user = {
+			name:'홍',
+			age:'30',
+			address:'서울'
+		}
+
+		document.write('<hr>');
+		let {name, age, address} = user;
+
+		document.write(name+'<br>');
+		document.write(age+'<br>');
+		document.write(address+'<br>');
+	</script>
+</body>
+</html>

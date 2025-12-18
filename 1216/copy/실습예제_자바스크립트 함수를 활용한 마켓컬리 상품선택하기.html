@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실습예제_자바스크립트 함수를 활용한 마켓컬리 상품선택하기</title>
+  <style>
+    #orderBox{display:none;}
+  </style>
+</head>
+<body>
+  <h2>실습예제_자바스크립트 함수를 활용한 마켓컬리 상품선택하기</h2>
+
+  <div>
+    <label for="">상품 선택</label>
+    <select name="" id="productSelect">
+      <option value="">상품을 선택해주세요</option>
+      <option value="19900">유명산지 설향딸기 500g</option>
+      <option value="15000">홍희 딸기 500g</option>
+    </select>
+  </div>  
+  <hr />
+  <!-- 수량 체크하기 위한 박스 -->
+  <div id="orderBox">
+    <p>수량  <button id="close_btn">닫기</button></p>
+    <button id="minusBtn">-</button>
+    <span id="qty">1</span>
+    <button id="plusBtn">+</button>
+  </div>
+
+  <!-- 총 상품금액을 위한 박스 -->
+  <p>
+    총 상품 금액 : <strong><span id="totalPrice">0</span>원</strong>
+  </p>
+
+  <script>
+    //선택옵션
+    const productSelect = document.getElementById('productSelect');
+    //수량박스
+    const orderbox = document.getElementById('orderBox');
+
+    //-감소버튼
+    const minusBtn = document.getElementById('minusBtn');
+    //+증가버튼
+    const plusBtn = document.getElementById('plusBtn');
+    //수량 변경
+    const qty = document.getElementById('qty');
+    //닫기 버튼
+    const close_btn = document.getElementById('close_btn');
+    //총 상품금액 변수
+    const totalPrice = document.getElementById('totalPrice');
+
+    let quantity = 1; //수량 초기값
+    let basePrice = 0; //금액 초기값
+
+    //선택목록에서 상품을 선택하면 해당 값을 변수에 담는다.
+    productSelect.addEventListener('change', function(){
+      if(this.value===''){//선택목록에 선택을 하지 않으면
+        orderbox.style.display='none'; //수량박스가 나오지 않도록 함
+        return;
+      }
+      quantity = 1; //수량 1
+      qty.innerText = quantity; //수량 출력
+
+      orderbox.style.display='block'; //수량박스가 나오도록 함.
+
+      basePrice = Number(this.value);//선택한 항목의 값을 변수에 담는다.
+      totalPrice.innerText = basePrice.toLocaleString(); //숫자에 ,나오게 하는 함수
+    });
+
+    //닫기 버튼 클릭시 
+    close_btn.addEventListener('click', ()=>{
+      orderbox.style.display='none';
+      quantity = 1;
+      basePrice = 0; //금액 초기값
+      totalPrice.innerText=basePrice;
+    });
+
+    //수량증가
+    plusBtn.addEventListener('click', ()=>{
+      //alert('수량증가');
+      quantity++; //1씩 증가
+      updatePrice();
+    });
+
+    //수량감소
+    minusBtn.addEventListener('click', ()=>{
+      //alert('수량감소');
+      if(quantity>1){
+        quantity--; //1씩 감소
+        updatePrice();
+      }
+    });
+
+    //출력을 위한 함수
+    function updatePrice(){
+      qty.innerText = quantity;
+      //연산결과를 표시하기
+      totalPrice.innerText=(basePrice*quantity).toLocaleString();
+    }
+
+  </script>
+</body>
+</html>

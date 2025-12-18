@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01_tailwind css를 활용한 로그인폼 구현</title>
+  <!-- tailwind css 라이브러리 주소 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+  <div class="px-6 py-12">
+    
+    <!-- 로고영역 -->
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <h1>
+        <a href="index.html" title="메인페이지로 바로가기">
+          <img src="./images/mark.svg" alt="상단로고" class="mx-auto h-10 w-auto">
+        </a>
+      </h1>
+      <h2 class="text-center mt-10 text-2xl/9 text-gray-500">Sign in to your account</h2>
+    </div>
+
+    <!-- 폼태그 영역 -->
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form>
+        <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
+        <div class="mt-2">
+          <input type="email" autocomplete="email" id="email" name="email" placeholder="이메일을 입력해주세요." class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-500 bg-white placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" required>
+        </div>
+
+        <div>
+          <div class="flex item-center justify-between mt-2">
+            <label for="password" class="block text-sm/6 font-medium text-gray-900">Password</label>
+            <div class="mt-2">
+              <a href="#" title="비번찾기" class="text-base text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+            </div>
+          </div>
+
+          <div class="mt-2">
+            <input type="password" id="password" name="password" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-500 placeholder:text-gray-400 focus:outline-2 focus:outline-offest-2 focus:outline-indigo-600 sm:text-sm/6" autocomplete="current-password">
+          </div>
+        </div>
+
+        <div class="mt-2">
+          <input type="submit" value="LOGIN" class="flex w-full rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs 
+          hover:bg-indigo-500 
+          focus-visibile:outline-2 
+          focus-visibile:outline-offset-2 
+          focus-visibile:outline-indigo-600">
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

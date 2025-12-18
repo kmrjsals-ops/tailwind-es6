@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<title>실습예제</title>
+	<style>
+		*{margin: 0; padding: 0;}
+		body{
+			margin: 0 auto;
+		}
+		.sidebar{
+			height: 420px;
+			position: absolute;
+			right: 44%;
+			top: 5%;
+
+		}
+		.sidebar > p{
+			font-size: 16px;
+			color: #333;
+		}
+		.h_b{
+			display: flex;
+			justify-content: space-between;
+			position: absolute;
+			bottom: 10px;
+		}
+		.heart, .bell{
+			position: relative;
+			bottom: 0px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 28px;
+			padding: 4px 6px;
+			cursor: pointer;
+		}
+		.heart{
+			margin-right: 5px;
+		}
+		.container{
+			width: 500px;
+			height: 800px;
+			position: absolute;
+			right: 15%;
+			top: 5%;
+			
+		}
+		.choice{
+			width: 100%;
+			height: 3rem;
+			border-radius: 10px;
+			font-weight: 500;
+			font-size: 16px;
+			margin-bottom: 	20px;
+		}
+		.cart{
+			display: flex;
+			position: relative;
+		}
+		.button{
+			border: 1px solid #333;
+			border-radius: 5px;
+			width: 7rem;
+			margin-top: 15px;
+		}
+		.button > span{
+			margin: auto 10px;
+		}
+		.updown{
+			width: 35px;
+			padding: 5px;
+			text-align: center;
+			font-size: 20px;
+			background: none;
+			border: none;
+		}
+
+		.fa-x{
+			position: absolute;
+			right: 20px;
+			top: 5px;
+		}
+		.price{
+			position: absolute;
+			right: 20px;
+			bottom: 0px;
+		}
+		.howMuch{
+			height: 200px;
+			position: relative;
+			margin-bottom: 20px;
+		}
+		.howMuch > p{
+			position: absolute;
+			bottom: 0px;
+			right: 0px;
+		}
+		.howMuch > p > span{
+			font-size: 32px;
+			font-weight: bold;
+		}
+		.buy{
+			width: 100%;
+			padding: 12px;
+			background: rgb(146, 35, 146);
+			color: #fff;
+			font-size: 16px;
+			border: none;
+			border-radius: 10px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="sidebar">
+		<p>구매수량</p>
+		<div class="h_b">
+			<div class="heart">
+				<i class="fa-regular fa-heart"></i>
+			</div>
+			<div class="bell">
+				<i class="fa-regular fa-bell"></i>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+	<select name="" id="" class="choice">
+		<option value="">상품을 선택해주세요</option>
+		<option value="">유영산지 설향딸기 500g</option>
+		<option value="">포도 1kg</option>
+		<option value="">골드망고 500g</option>
+	</select>
+	<div class="cart">
+		<div class="product">
+		<p>유영산지 설향딸기 500g</p>
+		<div class="button">
+		<button class="updown">-</button>
+		<span>2</span>
+		<button class="updown">+</button>
+		</div>
+		</div>
+
+		<span><i class="fa-solid fa-x"></i></span>
+		<p class="price">15,900원</p>
+	</div>
+
+	<div class="howMuch">
+		<p>총 상품금액: <span id="price2">31800</span>원</p>
+	</div>
+	<button class="buy">장바구니 담기</button>
+	</div>
+	
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function(){
+		let downCnt = $('.button > button:first-child');
+		let cnt = $('.button > span');
+		let cnt_sum = Number(cnt.text());
+		let upCnt = $('.button > button:last-child');
+		let price = 15900
+		let price2 = $('#price2');
+
+// - 버튼 클릭시 상품 갯수 감소와 가격변동 기능
+		downCnt.click(function(){
+			cnt_sum = cnt_sum -1;
+			cnt.text(cnt_sum);
+			price2.text(cnt_sum*price);
+
+// 만약 -를 클릭하여 상품개수가 0이 될 시 목록을 지워버림
+		if(cnt_sum <= 0){
+			$('.cart').css('display','none');
+		}
+		});
+// X버튼 클릭해도 상품삭제됨
+		$('.fa-solid').click(function(){
+			$('.cart').css('display','none');
+		});
+
+		upCnt.click(function(){
+			cnt_sum = cnt_sum +1;
+			cnt.text(cnt_sum);
+			price2.text(cnt_sum*price);
+		});
+
+// 찜 버튼, 재입고 알림
+
+		$('.heart .fa-regular').click(function(){
+			$(this).toggleClass('fa-solid');
+
+			if($(this).hasClass('fa-solid')){
+				alert('찜한 메뉴로 등록되었습니다.');
+			}else{
+				alert('찜 메뉴에서 제거하였습니다.');
+			}
+		});
+
+		$('.bell .fa-regular').click(function(){
+			$(this).toggleClass('fa-solid');
+			if($(this).hasClass('fa-solid')){
+				alert('재입고 알림 신청을 완료하였습니다.');
+			}else{
+				alert('재입고 알림 신청을 취소하였습니다.');
+			}
+		});
+		
+
+	});
+</script>
+</html>

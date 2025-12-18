@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>파일첨부리스트 구현하기</title>
+</head>
+<body>
+	<h2>파일첨부리스트 구현하기</h2>
+
+	<h3>업로드된 파일 리스트 출력하기</h3>
+	<div id="preview"></div>
+
+	<input type="file" id="file_input" multiple />
+
+	<script>
+		//객체 생성하여 내용 작성하기
+		const handler = {
+			init(){
+				//1. 변수 생성
+				const fileInput = document.querySelector('#file_input'); //버튼변수
+				const preview = document.querySelector('#preview'); //출력변수
+
+				//2. input버튼 클릭시 이벤트발생
+				fileInput.addEventListener('change',()=>{
+					console.dir(fileInput);
+					const files = Array.from(fileInput.files);
+
+					//파일 첨부시마다 각각 해당 파일명.확장자 X버튼 리스트로 출력
+					files.forEach(file=>{
+						preview.innerHTML +=`
+						<p id="${file.lastModified}">
+							${file.name}
+							<button data-index='${file.lastModified}' class='file_remove'>X</button>
+							</p>`;
+					});
+				});
+				},
+				//3. 삭제 버튼 클릭시 해당 index값 이미지 삭제하기
+				removeFile:()=>{
+					document.addEventListener('click',(e)=>{
+						if(e.target.className!=='file_remove') return;
+						// 삭제하고자 하는 해당 data-index값을 변수에 담는다.
+						const removeTargetId = e.target.dataset.index;
+						const removeTarget = document.getElementById(removeTargetId);
+						const files = document.querySelector('#file_input').files;
+						const dataTransfer = new DataTransfer();
+						//파일명 삭제 후 다시 배열 정리
+						Array.from(files)
+							.filter(file=>file.lastModified!=removeTargetId)
+							.forEach(file=>{
+								dataTransfer.items.add(file);
+							});
+						document.querySelector('#file_input').files = dataTransfer.files;
+						removeTarget.remove();
+					});
+				}
+			
+		};
+
+		
+		//객체 실행하기
+		handler.init();
+		handler.removeFile();
+	</script>
+</body>
+</html>

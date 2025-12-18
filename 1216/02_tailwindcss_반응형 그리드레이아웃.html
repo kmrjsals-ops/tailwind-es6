@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+	<title>반응형 그리드 레이아웃</title>
+</head>
+<body class="bg-gray-100">
+	<section class="max-w-6xl mx-auto px-4 py-10">
+			<h1 class="text-left mb-8 text-5xl font-extrabold">ARTIST</h1>
+			<!-- 그리드 레이아웃 -->
+			<article id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" >
+			<!-- 그리드 자손요소 -->
+				<div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+					<img src="./images/1.jpg" alt="" class="w-full h-48 object-cover hover:scale-105 transition duration-300">
+					<div class="p-4">
+					<h2 class="font-semibold text-lg">김대희</h2>
+					<p class="text-gray-500 text-sm">KBS 공채 14기 코미디언</p>
+				</div>
+				</div>
+
+				<div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+					<img src="./images/2.jpg" alt="" class="w-full h-48 object-cover hover:scale-105 transition duration-300">
+					<div class="p-4">
+					<h2 class="font-semibold text-lg">김준호</h2>
+					<p class="text-gray-500 text-sm">KBS 공채 5기 코미디언</p>
+				</div>
+				</div>
+
+				<div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+					<img src="./images/3.jpg" alt="" class="w-full h-48 object-cover hover:scale-105 transition duration-300">
+					<div class="p-4">
+					<h2 class="font-semibold text-lg">유민상</h2>
+					<p class="text-gray-500 text-sm">KBS 공채 20기 코미디언</p>
+				</div>
+				</div>
+
+				<div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+					<img src="./images/4.jpg" alt="" class="w-full h-48 object-cover hover:scale-105 transition duration-300">
+					<div class="p-4">
+					<h2 class="font-semibold text-lg">홍인규</h2>
+					<p class="text-gray-500 text-sm">KBS 19기 공채 코미디언</p>
+				</div>
+				</div>
+				<div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+					<img src="./images/5.jpg" alt="" class="w-full h-48 object-cover hover:scale-105 transition duration-300">
+					<div class="p-4">
+					<h2 class="font-semibold text-lg">김지민</h2>
+					<p class="text-gray-500 text-sm">KBS 공채 21기 코미디언</p>
+				</div>
+				</div>
+				<div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+					<img src="./images/6.jpg" alt="" class="w-full h-48 object-cover hover:scale-105 transition duration-300">
+					<div class="p-4">
+					<h2 class="font-semibold text-lg">김민경</h2>
+					<p class="text-gray-500 text-sm">KBS 공채 23기 코미디언</p>
+				</div>
+				</div>
+				<div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+					<img src="./images/7.jpg" alt="" class="w-full h-48 object-cover hover:scale-105 transition duration-300">
+					<div class="p-4">
+					<h2 class="font-semibold text-lg">신기루</h2>
+					<p class="text-gray-500 text-sm">KBS 특채 코미디언</p>
+				</div>
+				</div>
+				<div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition">
+					<img src="./images/8.jpg" alt="" class="w-full h-48 object-cover hover:scale-105 transition duration-300">
+					<div class="p-4">
+					<h2 class="font-semibold text-lg">홍윤화</h2>
+					<p class="text-gray-500 text-sm">2006년 SBS특채 코미디언</p>
+				</div>
+				</div>
+
+				<!-- 추가될 데이터목록 =>내용추가 메서드 append() -->
+			</article>
+	</section>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function(){
+			//비동기 ajax문법을 활용하여 json데이터를 불러와 내용을 추가한다.
+			//외워야하는 부분
+
+			$.ajax({
+				url:'./js/data.json', //주소나 불러올 데이터파일
+				type:'post', //불러올 방식
+				dataType:'json', //데이터 형식
+				success:function(result){
+					//데이터 통신 성공시 실행할 내용
+					let t = "";
+					$.each(result.product, function(i,e){
+						t+="<div class='bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition'><img src='./images/"+e.path+"' alt='"+e.tit+ "' class='w-full h-48 object-cover hover:scale-105 transition duration-300'><div class='p-4'><h2 class='font-semibold text-lg'>"+ e.tit+"</h2><p class='text-gray-500 text-sm'>"+e.text+ "</p></div></div>";
+					});
+					t+="";
+					$('#gallery').append(t);
+				}
+			});
+		});
+	</script>
+</body>
+</html>

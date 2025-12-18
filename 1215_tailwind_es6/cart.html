@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<select name="" id="p_selected">
+		<option value="">메뉴선택</option>
+		<option value="">설향딸기</option>
+		<option value="">포도</option>
+		<option value="">메론</option>
+	</select>
+	<div class="cart"></div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function(){
+		$('.p_selected').change(function(){
+			let choice = $(this).find('option:selected');
+			let p_name = choice.text();
+			let p_price = Number(choice.data('price'));
+		});
+
+let cart = $('.cart');
+
+cart.append(`
+  <div class="cart-item" data-name="${productName}">
+    <span class="name">${productName}</span>
+    <span class="price">${productPrice}</span>
+    <span class="quantity">1</span>
+    <button class="remove">삭제</button>
+  </div>
+`);
+
+	})
+</script>
+</body>
+</html>
